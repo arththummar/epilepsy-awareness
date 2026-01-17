@@ -1,9 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Link } from "wouter";
 import { ArrowRight, Heart, Activity, Users, ShieldAlert } from "lucide-react";
+import { useLocation } from "wouter";
 
 export default function Home() {
+  const [, setLocation] = useLocation();
+
   return (
     <div className="flex flex-col gap-16 pb-16">
       {/* Hero Section */}
@@ -22,16 +24,21 @@ export default function Home() {
                 Join us in raising awareness, providing education, and building a supportive community for the 3.4 million Americans living with epilepsy.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link href="/first-aid">
-                  <Button size="lg" className="rounded-full text-lg px-8 bg-primary hover:bg-primary/90">
-                    Learn Seizure First Aid
-                  </Button>
-                </Link>
-                <Link href="/about">
-                  <Button variant="outline" size="lg" className="rounded-full text-lg px-8 border-primary text-primary hover:bg-primary/5">
-                    About Epilepsy
-                  </Button>
-                </Link>
+                <Button 
+                  size="lg" 
+                  className="rounded-full text-lg px-8 bg-primary hover:bg-primary/90"
+                  onClick={() => setLocation('/first-aid')}
+                >
+                  Learn Seizure First Aid
+                </Button>
+                <Button 
+                  variant="outline" 
+                  size="lg" 
+                  className="rounded-full text-lg px-8 border-primary text-primary hover:bg-primary/5"
+                  onClick={() => setLocation('/about')}
+                >
+                  About Epilepsy
+                </Button>
               </div>
             </div>
             <div className="relative lg:ml-auto">
@@ -101,54 +108,66 @@ export default function Home() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <Link href="/about">
-            <div className="group cursor-pointer">
-              <div className="relative overflow-hidden rounded-2xl mb-4 aspect-video">
-                <img 
-                  src="/images/icon-brain-health.png" 
-                  alt="Brain health illustration" 
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 bg-white p-8"
-                />
-              </div>
-              <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">What is Epilepsy?</h3>
-              <p className="text-muted-foreground mb-4">Learn about the condition, its causes, and how it affects the brain.</p>
-              <span className="inline-flex items-center text-primary font-semibold group-hover:translate-x-1 transition-transform">
-                Read More <ArrowRight className="ml-2 w-4 h-4" />
-              </span>
+          <div 
+            className="group cursor-pointer"
+            onClick={() => setLocation('/about')}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => e.key === 'Enter' && setLocation('/about')}
+          >
+            <div className="relative overflow-hidden rounded-2xl mb-4 aspect-video">
+              <img 
+                src="/images/icon-brain-health.png" 
+                alt="Brain health illustration" 
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 bg-white p-8"
+              />
             </div>
-          </Link>
+            <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">What is Epilepsy?</h3>
+            <p className="text-muted-foreground mb-4">Learn about the condition, its causes, and how it affects the brain.</p>
+            <span className="inline-flex items-center text-primary font-semibold group-hover:translate-x-1 transition-transform">
+              Read More <ArrowRight className="ml-2 w-4 h-4" />
+            </span>
+          </div>
 
-          <Link href="/seizure-types">
-            <div className="group cursor-pointer">
-              <div className="relative overflow-hidden rounded-2xl mb-4 aspect-video">
-                <div className="w-full h-full bg-secondary/30 flex items-center justify-center">
-                  <Activity className="w-24 h-24 text-secondary-foreground/50" />
-                </div>
+          <div 
+            className="group cursor-pointer"
+            onClick={() => setLocation('/seizure-types')}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => e.key === 'Enter' && setLocation('/seizure-types')}
+          >
+            <div className="relative overflow-hidden rounded-2xl mb-4 aspect-video">
+              <div className="w-full h-full bg-secondary/30 flex items-center justify-center">
+                <Activity className="w-24 h-24 text-secondary-foreground/50" />
               </div>
-              <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Types of Seizures</h3>
-              <p className="text-muted-foreground mb-4">Not all seizures look the same. Discover the different types and their symptoms.</p>
-              <span className="inline-flex items-center text-primary font-semibold group-hover:translate-x-1 transition-transform">
-                Read More <ArrowRight className="ml-2 w-4 h-4" />
-              </span>
             </div>
-          </Link>
+            <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Types of Seizures</h3>
+            <p className="text-muted-foreground mb-4">Not all seizures look the same. Discover the different types and their symptoms.</p>
+            <span className="inline-flex items-center text-primary font-semibold group-hover:translate-x-1 transition-transform">
+              Read More <ArrowRight className="ml-2 w-4 h-4" />
+            </span>
+          </div>
 
-          <Link href="/first-aid">
-            <div className="group cursor-pointer">
-              <div className="relative overflow-hidden rounded-2xl mb-4 aspect-video">
-                <img 
-                  src="/images/first-aid-guide.jpg" 
-                  alt="First aid illustration" 
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
-              <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Seizure First Aid</h3>
-              <p className="text-muted-foreground mb-4">Knowing what to do can save a life. Learn the essential steps of seizure first aid.</p>
-              <span className="inline-flex items-center text-primary font-semibold group-hover:translate-x-1 transition-transform">
-                Read More <ArrowRight className="ml-2 w-4 h-4" />
-              </span>
+          <div 
+            className="group cursor-pointer"
+            onClick={() => setLocation('/first-aid')}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => e.key === 'Enter' && setLocation('/first-aid')}
+          >
+            <div className="relative overflow-hidden rounded-2xl mb-4 aspect-video">
+              <img 
+                src="/images/first-aid-guide.jpg" 
+                alt="First aid illustration" 
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
             </div>
-          </Link>
+            <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Seizure First Aid</h3>
+            <p className="text-muted-foreground mb-4">Knowing what to do can save a life. Learn the essential steps of seizure first aid.</p>
+            <span className="inline-flex items-center text-primary font-semibold group-hover:translate-x-1 transition-transform">
+              Read More <ArrowRight className="ml-2 w-4 h-4" />
+            </span>
+          </div>
         </div>
       </section>
 

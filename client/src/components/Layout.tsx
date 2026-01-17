@@ -20,24 +20,22 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <div className="min-h-screen flex flex-col bg-background font-sans">
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-16 items-center justify-between">
-          <Link href="/">
-            <a className="flex items-center space-x-2">
-              <span className="text-2xl font-bold font-serif text-primary">EpilepsyAware</span>
-            </a>
+          <Link href="/" className="flex items-center space-x-2">
+            <span className="text-2xl font-bold font-serif text-primary">EpilepsyAware</span>
           </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
             {navItems.map((item) => (
-              <Link key={item.href} href={item.href}>
-                <a
-                  className={cn(
-                    "transition-colors hover:text-primary",
-                    location === item.href ? "text-primary font-bold" : "text-foreground/60"
-                  )}
-                >
-                  {item.label}
-                </a>
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cn(
+                  "transition-colors hover:text-primary",
+                  location === item.href ? "text-primary font-bold" : "text-foreground/60"
+                )}
+              >
+                {item.label}
               </Link>
             ))}
             <Button variant="default" className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-6">
@@ -59,16 +57,16 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         {isMenuOpen && (
           <div className="md:hidden border-t bg-background p-4 space-y-4">
             {navItems.map((item) => (
-              <Link key={item.href} href={item.href}>
-                <a
-                  className={cn(
-                    "block py-2 text-base font-medium transition-colors hover:text-primary",
-                    location === item.href ? "text-primary font-bold" : "text-foreground/60"
-                  )}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item.label}
-                </a>
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cn(
+                  "block py-2 text-base font-medium transition-colors hover:text-primary",
+                  location === item.href ? "text-primary font-bold" : "text-foreground/60"
+                )}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {item.label}
               </Link>
             ))}
             <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 rounded-full">
@@ -94,10 +92,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <div>
             <h4 className="font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><Link href="/about">About Epilepsy</Link></li>
-              <li><Link href="/seizure-types">Seizure Types</Link></li>
-              <li><Link href="/first-aid">First Aid</Link></li>
-              <li><Link href="/resources">Resources</Link></li>
+              <li><Link href="/about" className="hover:text-primary">About Epilepsy</Link></li>
+              <li><Link href="/seizure-types" className="hover:text-primary">Seizure Types</Link></li>
+              <li><Link href="/first-aid" className="hover:text-primary">First Aid</Link></li>
+              <li><Link href="/resources" className="hover:text-primary">Resources</Link></li>
             </ul>
           </div>
 
